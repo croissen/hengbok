@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2020/07/28/14/8/c5044f0c-3f22-4062-8bba-365d66ad1be4.jpg",
+    "name": "담터 슈퍼 곡물 12곡 미숫가루, 800g",
+    "category": "인기상품"
+  },
+  {
+    "id": 2,
+    "image": "/images/product2.jpg",
+    "name": "행복 상품 2",
+    "category": "인기상품"
+  },
+  {
+    "id": 3,
+    "image": "/images/product3.jpg",
+    "name": "행복 상품 3",
+    "category": "인기상품"
+  },
+  {
+    "id": 4,
+    "image": "/images/product4.jpg",
+    "name": "행복 상품 4",
+    "category": "인기상품"
+  },
+  {
+    "id": 5,
+    "image": "/images/product5.jpg",
+    "name": "행복 상품 5",
+    "category": "인기상품"
+  },
+
+
+  {
+    "id": 6,
+    "image": "/images/product6.jpg",
+    "name": "버버리 스커트",
+    "category": "여성패션"
+  },
+  {
+    "id": 7,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/390a/3036ffffdb75e1b2c17f6c446270c4f04b162f3bfd8512c2b628c881c049.jpg",
+    "name": "구찌 가디건",
+    "category": "여성패션"
+  },
+  {
+    "id": 8,
+    "image": "/images/product8.jpg",
+    "name": "샤넬 가디건",
+    "category": "여성패션"
+  },
+  {
+    "id": 9,
+    "image": "/images/product5.jpg",
+    "name": "입생로랑 블라우스",
+    "category": "여성패션"
+  },
+  {
+    "id": 10,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c76f/19fdbcf3a7fa8ebc3721ea2999030523b12eb1a3034b1fcaba2cdb69ff13.jpg",
+    "name": "입생로s랑 블라우스",
+    "category": "여성패션"
+  }
+]

@@ -6,10 +6,10 @@ export const Footer = styled.footer`
   text-align: center;
   padding: 25px 20px;
   font-size: 15px;
-  margin-top: auto;
+  margin-top: 100px;
 
   @media (max-width: 768px) {
-    padding: 20px 15px; /* 모바일에서 패딩 조절 */
-    font-size: 13px; /* 모바일에서 글자 크기 줄이기 */
+    padding: 20px 15px;
+    font-size: 13px; 
   }
 `;

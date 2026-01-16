@@ -37,7 +37,6 @@ export const Logo = styled.a`
 export const Nav = styled.nav`
   display: flex;
   gap: 25px;
-  flex: 1;
   justify-content: center;
 
   @media (max-width: 768px) {
