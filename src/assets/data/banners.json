@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "categoryId": "women-fashion",
+    "image": "/images/banner-women1.jpg",
+    "link": "/category/women-fashion/event1",
+    "title": "트렌디한 여성 패션!",
+    "content": "가을 신상, 최대 30% 할인"
+  },
+  {
+    "id": 2,
+    "categoryId": "women-fashion",
+    "image": "/images/banner-women2.jpg",
+    "link": "/category/women-fashion/event2",
+    "title": "나만의 스타일 찾기",
+    "content": "오늘의 추천 코디"
+  },
+  {
+    "id": 3,
+    "categoryId": "beauty",
+    "image": "/images/banner-beauty1.jpg",
+    "link": "/category/beauty/event1",
+    "title": "피부엔 촉촉함이 필요해",
+    "content": "환절기 스킨케어 특가"
+  },
+  {
+    "id": 4,
+    "categoryId": "beauty",
+    "image": "/images/banner-beauty2.jpg",
+    "link": "/category/beauty/event2",
+    "title": "완벽한 메이크업",
+    "content": "인기 코스메틱 최대 50%"
+  },
+  {
+    "id": 5,
+    "categoryId": "digital",
+    "image": "/images/banner-digital1.jpg",
+    "link": "/category/digital/event1",
+    "title": "스마트한 디지털 라이프",
+    "content": "최신 노트북 한정 수량"
+  },
+  {
+    "id": 6,
+    "categoryId": "digital",
+    "image": "/images/banner-digital2.jpg",
+    "link": "/category/digital/event2",
+    "title": "게이머들을 위한 특가",
+    "content": "최고급 게이밍 기어"
+  },
+  {
+    "id": 7,
+    "categoryId": "food",
+    "image": "/images/banner-food1.jpg",
+    "link": "/category/food/event1",
+    "title": "집밥이 그리울 때",
+    "content": "신선한 식료품 새벽 배송"
+  },
+  {
+    "id": 8,
+    "categoryId": "daily-goods",
+    "image": "/images/banner-daily1.jpg",
+    "link": "/category/daily-goods/event1",
+    "title": "우리집의 작은 행복",
+    "content": "생활용품 초특가"
+  }
+]

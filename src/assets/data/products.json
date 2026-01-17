@@ -1,64 +1,99 @@
 [
   {
-    "id": 1,
-    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2020/07/28/14/8/c5044f0c-3f22-4062-8bba-365d66ad1be4.jpg",
-    "name": "담터 슈퍼 곡물 12곡 미숫가루, 800g",
-    "category": "인기상품"
+    "id": 12,
+    "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/4252654397759882-0196235b-86d4-46c5-acdc-69024f2b18aa.jpg",
+    "name": "삼성전자 갤럭시탭 S9 Wi-Fi, 27.81cm, 256GB, 그라파이트",
+    "link": "https://link.coupang.com/a/duiz73",
+    "category": "가전/디지털"
   },
   {
-    "id": 2,
-    "image": "/images/product2.jpg",
-    "name": "행복 상품 2",
-    "category": "인기상품"
+    "id": 11,
+    "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2023/10/05/17/5/e1a5f6e8-356a-4d40-ab96-a88939c32e92.jpg",
+    "name": "필립스 에센셜 에어프라이어 대형, HD9270/90",
+    "link": "https://link.coupang.com/a/duiyo2",
+    "category": "가전/디지털"
   },
   {
-    "id": 3,
-    "image": "/images/product3.jpg",
-    "name": "행복 상품 3",
-    "category": "인기상품"
+    "id": 10,
+    "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2023/11/06/10/8/cf580172-e1c9-4677-94a8-654ec47185ee.jpg",
+    "name": "아누아 어성초 77 토너, 250ml, 1개",
+    "link": "https://link.coupang.com/a/duiyd1",
+    "category": "뷰티"
   },
   {
-    "id": 4,
-    "image": "/images/product4.jpg",
-    "name": "행복 상품 4",
-    "category": "인기상품"
-  },
-  {
-    "id": 5,
-    "image": "/images/product5.jpg",
-    "name": "행복 상품 5",
-    "category": "인기상품"
+    "id": 9,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/51393912880755-d09e4720-55c5-4f4f-8813-e06834c50737.jpg",
+    "name": "닥터지 레드 블레미쉬 클리어 더블 결 패드 180ml, 60개입, 1개",
+    "link": "https://link.coupang.com/a/dupRYl",
+    "category": "뷰티"
   },
 
 
   {
-    "id": 6,
-    "image": "/images/product6.jpg",
-    "name": "버버리 스커트",
+    "id": 10,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/248d/3904dec9db682dd289affede81ace13035ae8a9f8ea47c297d91ad7f608e.jpg",
+    "name": "라라홀리 심플 데일리 브이넥 소프트 여리핏 루즈 긴팔 니트",
+    "link": "https://link.coupang.com/a/dupJi4",
     "category": "여성패션"
   },
   {
     "id": 7,
-    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/390a/3036ffffdb75e1b2c17f6c446270c4f04b162f3bfd8512c2b628c881c049.jpg",
-    "name": "구찌 가디건",
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/471c/2a4946fe476ab229598cdaf90f05d17c82eabcda79f1c7af66e3f76983e8.jpg",
+    "name": "소소온 여리여리 루즈핏 오프숄더 니트 이너세트",
+    "link": "https://link.coupang.com/a/dupOGc",
+    "category": "여성패션"
+  },
+  {
+    "id": 6,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/387b/935fa36a16e8a626abae49c23a0cf6e9f1918b07f80846054578d0ce205f.jpg",
+    "name": "여성 봄 가을 겨울 슬림핏 패션 롱원피스 데일리룩 코듀로이 휴양지 원피스",
+    "link": "https://link.coupang.com/a/dupPbz",
+    "category": "여성패션"
+  },
+  {
+    "id": 5,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/7afc/1b9ac3560f3f36a749fbe4ac61482bc47c6dd516f2ec0f4224cc09990bf5.png",
+    "name": "해피유통 여성 루즈 니트 스웨터 오프숄더 긴팔 루즈핏 디자인",
+    "link": "https://link.coupang.com/a/dupP9o",
     "category": "여성패션"
   },
   {
     "id": 8,
-    "image": "/images/product8.jpg",
-    "name": "샤넬 가디건",
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/tmcygnts/5244aed6cc32483881123b038fccda13.jpg",
+    "name": "여성용 머스트 꽈배기 루즈핏 니트",
+    "link": "https://link.coupang.com/a/dupQWr",
     "category": "여성패션"
   },
+
+
   {
-    "id": 9,
-    "image": "/images/product5.jpg",
-    "name": "입생로랑 블라우스",
-    "category": "여성패션"
+    "id": 4,
+    "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/425516723223192-d6ffbcf1-0e1d-408e-8a07-1e5828ed7858.jpg",
+    "name": "탐사 클래식 물티슈 캡형, 100매, 10개",
+    "link": "https://link.coupang.com/a/duiwB8",
+    "category": "생활용품"
   },
   {
-    "id": 10,
-    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c76f/19fdbcf3a7fa8ebc3721ea2999030523b12eb1a3034b1fcaba2cdb69ff13.jpg",
-    "name": "입생로s랑 블라우스",
-    "category": "여성패션"
+    "id": 3,
+    "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/images/2018/12/12/17/3/c8879685-6126-4762-b114-11003463a5f6.jpg",
+    "name": "12) 시원하고 따뜻한 실내용 털슬리퍼, 브라운",
+    "link": "https://link.coupang.com/a/duiwlF",
+    "category": "생활용품"
+  },
+
+  
+  {
+    "id": 2,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2884059707515245-448b5d2b-4a14-4e33-8a06-2286392f8a64.jpg",
+    "name": "곰곰 고당도 12.5brix 감귤, 1.5kg, 1박스",
+    "link": "https://link.coupang.com/a/dupSUO",
+    "category": "식품"
+  },
+  {
+    "id": 1,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2020/07/28/14/8/c5044f0c-3f22-4062-8bba-365d66ad1be4.jpg",
+    "name": "담터 슈퍼 곡물 12곡 미숫가루, 800g",
+    "link": "https://link.coupang.com/a/duprRF",
+    "category": "식품"
   }
 ]

@@ -1,26 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import * as S from './Header.styles';
 
-function Header() {
+function Header({ categories }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
-
+  const [isPCCategoryDropdownOpen, setIsPCCategoryDropdownOpen] = useState(false);
+  const [isMobileCategoryDropdownOpen, setIsMobileCategoryDropdownOpen] = useState(false);
+  const headerRef = useRef(null);
+  const pcCategoryWrapperRef = useRef(null);
+  
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
+    setIsNavOpen(prev => !prev);
+    setIsMobileCategoryDropdownOpen(false);
   };
 
+  const togglePCCategoryDropdown = useCallback(() => {
+    setIsPCCategoryDropdownOpen(prev => !prev);
+  }, []);
+
+  const toggleMobileCategoryDropdown = useCallback((e) => {
+    e.preventDefault();
+    setIsMobileCategoryDropdownOpen(prev => !prev);
+  }, []);
+
+  const handleClickOutside = useCallback((event) => {
+    if (window.innerWidth <= 768) {
+      if (isNavOpen && headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsNavOpen(false);
+        setIsMobileCategoryDropdownOpen(false);
+      }
+    } else {
+      if (isPCCategoryDropdownOpen && pcCategoryWrapperRef.current && !pcCategoryWrapperRef.current.contains(event.target)) {
+        setIsPCCategoryDropdownOpen(false);
+      }
+    }
+  }, [isNavOpen, isPCCategoryDropdownOpen]);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
   return (
-    <S.HeaderContainer>
-      <S.HeaderContent>
-        <S.Logo href="#">행복스토어</S.Logo>
+    <S.HeaderContainer $isNavOpen={isNavOpen} ref={headerRef}>
+      <S.TopHeaderRow>
+        <S.Logo href="/">행복스토어</S.Logo>
 
-        <S.Nav isNavOpen={isNavOpen}>
-          <S.NavLink href="#">카테고리</S.NavLink>
-          <S.NavLink href="#">베스트</S.NavLink>
-          <S.NavLink href="#">신상품</S.NavLink>
-        </S.Nav>
+        <S.PCNav>
+          <S.PCCategoryWrapper ref={pcCategoryWrapperRef}>
+            <S.NavLink
+              as="div"
+              onClick={togglePCCategoryDropdown}
+              role="button"
+              tabIndex="0"
+            >
+              카테고리 <S.DropdownArrow $isOpen={isPCCategoryDropdownOpen} />
+            </S.NavLink>
+            {isPCCategoryDropdownOpen && (
+              <S.PCategoryDropdownMenu>
+                {categories.map((category) => (
+                  <S.PCCategoryDropdownLink 
+                    key={category.name} 
+                    href={category.href}
+                    onClick={() => setIsPCCategoryDropdownOpen(false)}
+                  >
+                    {category.name}
+                  </S.PCCategoryDropdownLink>
+                ))}
+              </S.PCategoryDropdownMenu>
+            )}
+          </S.PCCategoryWrapper>
+          <S.NavLink href="https://specmaru.com/" target="_blank" rel="noopener noreferrer">스펙비교</S.NavLink>
+          <S.NavLink href="#">광고문의</S.NavLink>
+        </S.PCNav>
 
-        <S.HamburgerIcon onClick={toggleNav}>{isNavOpen ? '✕' : '☰'}</S.HamburgerIcon>
-      </S.HeaderContent>
+        <S.HamburgerIcon onClick={toggleNav}>☰</S.HamburgerIcon>
+      </S.TopHeaderRow>
+
+      <S.MobileExpandedNav $isNavOpen={isNavOpen}>
+        <S.MobileCategoryWrapper>
+          <S.NavLink as="div" onClick={toggleMobileCategoryDropdown} role="button" tabIndex="0">
+            카테고리 <S.DropdownArrow $isOpen={isMobileCategoryDropdownOpen} />
+          </S.NavLink>
+          <S.DropdownMenu $isOpen={isMobileCategoryDropdownOpen}>
+            {categories.map((category) => (
+              <S.DropdownLink 
+                key={category.name} 
+                href={category.href}
+                onClick={() => {
+                  setIsMobileCategoryDropdownOpen(false);
+                  setIsNavOpen(false);
+                }}
+              >
+                {category.name}
+              </S.DropdownLink>
+            ))}
+          </S.DropdownMenu>
+        </S.MobileCategoryWrapper>
+        <S.NavLink href="https://specmaru.com/" target="_blank" rel="noopener noreferrer">스펙비교</S.NavLink>
+        <S.NavLink href="#">광고문의</S.NavLink>
+      </S.MobileExpandedNav>
     </S.HeaderContainer>
   );
 }
