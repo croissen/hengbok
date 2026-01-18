@@ -358,3 +358,19 @@ export const ScrollToTopButton = styled.button`
     font-size: 20px;
   }
 `;
+export const CoupangDiv = styled.div`
+  text-align: center;
+  margin: 100px 0 400px 0;
+  padding: 0 200px;
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+export const CoupangP = styled.p`
+  color: #555;
+  font-size: 20px;
+  margin-bottom: 20px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;

@@ -36,22 +36,22 @@ function Home() {
 
   const sortAndPrioritizeResults = (results, query) => {
     const idToPrioritize = parseInt(query, 10);
-    const hasOriginalParenthesis = (name) => name.includes(')');
+    const hasOriginalParenthesis = (product) => (product && product.name && product.name.includes(')'));
 
     let prioritizedById = null;
     const filteredResults = [];
 
     for (const product of results) {
-      if (!isNaN(idToPrioritize) && product.id === idToPrioritize) {
+      if (product && !isNaN(idToPrioritize) && product.id === idToPrioritize) {
         prioritizedById = product;
-      } else {
+      } else if (product) {
         filteredResults.push(product);
       }
     }
 
     filteredResults.sort((a, b) => {
-      const aHasParen = hasOriginalParenthesis(a.name);
-      const bHasParen = hasOriginalParenthesis(b.name);
+      const aHasParen = hasOriginalParenthesis(a);
+      const bHasParen = hasOriginalParenthesis(b);
 
       if (aHasParen && !bHasParen) {
         return -1;
@@ -70,9 +70,11 @@ function Home() {
 
   const performSearch = (query) => {
     if (query.trim() !== '') {
-      const filtered = productsData.filter(product =>
-        product.name.toLowerCase().includes(query.toLowerCase()) || product.id.toString() === query.trim()
-      );
+      const filtered = productsData.filter(product => {
+        const productName = product.name ? product.name.toLowerCase() : '';
+        const lowerCaseQuery = query.toLowerCase();
+        return productName.includes(lowerCaseQuery) || (product.id && product.id.toString() === query.trim());
+      });
       setSearchResults(sortAndPrioritizeResults(filtered, query));
       setIsSearching(true);
     } else {
@@ -100,7 +102,7 @@ function Home() {
     });
   };
 
-  const popularProductIds = [1, 7, 9, 12, 8,  6, 5, 11, 10, 2];
+  const popularProductIds = [1, 7, 9, 12];
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
@@ -173,6 +175,7 @@ function Home() {
               <React.Fragment>
                 <S.ProductCatDiv>
                   <S.ProductCat>인기상품</S.ProductCat>
+                  <S.MoreLink href="/popular">more →</S.MoreLink>
                 </S.ProductCatDiv>
                 <S.ProductGrid $isSearchResults={false}>
                   {popularProducts.slice(0, 10).map(product => (
@@ -212,6 +215,14 @@ function Home() {
           </>
         )}
       </S.MainContent>
+      {!isSearching && (
+        <S.CoupangDiv>
+          <S.CoupangP>
+            여기까지 오셨는데도 마음에 드는 상품을 찾지 못하셨나요??
+          </S.CoupangP>
+          <iframe src="https://coupa.ng/cllzae" width="100%" height="44" frameBorder="0" scrolling="no" referrerPolicy="unsafe-url" title="추천 상품 더 보기"></iframe>
+        </S.CoupangDiv>
+      )}
 
       <Footer />
 
