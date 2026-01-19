@@ -1,11 +1,17 @@
+// src/App.js (예시)
 import React from 'react';
-import Home from './pages/Home'; // Home 컴포넌트 경로
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Detail from './pages/Detail'; // Detail 컴포넌트 임포트
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/category/:categoryName" element={<Detail />} /> 
+      </Routes>
+    </Router>
   );
 }
 

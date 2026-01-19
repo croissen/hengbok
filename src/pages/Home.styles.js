@@ -15,6 +15,7 @@ export const Container = styled.div`
   min-height: 100vh;
   font-family: Arial, sans-serif;
   color: #333;
+  background-color: #f5f6f8;
 `;
 
 export const MainContent = styled.main`
@@ -108,10 +109,6 @@ export const MoreLink = styled.a`
 
   &:hover {
     color: #ff6f61;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 14px;
   }
 `;
 
@@ -361,7 +358,8 @@ export const ScrollToTopButton = styled.button`
 export const CoupangDiv = styled.div`
   text-align: center;
   margin: 100px 0 400px 0;
-  padding: 0 200px;
+  padding: 0 20%;
+
   @media (max-width: 768px) {
     padding: 0 20px;
   }

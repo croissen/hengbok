@@ -102,15 +102,14 @@ function Home() {
     });
   };
 
-  const popularProductIds = [1, 7, 9, 12];
+  const popularProductIds = [1, 2, 3, 302, 301, 103, 102, 201, 202, 203];
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
-    { name: "여성패션", href: "/category/여성패션" },
-    { name: "뷰티", href: "/category/뷰티" },
-    { name: "가전/디지털", href: "/category/가전/디지털" },
-    { name: "식품", href: "/category/식품" },
-    { name: "생활용품", href: "/category/생활용품" },
+    { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
+    { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
+    { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
+    { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
   ];
 
   const disclaimerMessage = "하단 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.";
@@ -143,7 +142,7 @@ function Home() {
         <S.SearchSection>
           <S.SearchInput
             type="text"
-            placeholder="원하는 상품을 검색해보세요!"
+            placeholder="번호 및 상품명을 입력하세요"
             value={searchTerm}
             onChange={handleSearchInputChange}
             onKeyPress={(e) => { if (e.key === 'Enter') performSearch(searchTerm); }}
@@ -175,7 +174,6 @@ function Home() {
               <React.Fragment>
                 <S.ProductCatDiv>
                   <S.ProductCat>인기상품</S.ProductCat>
-                  <S.MoreLink href="/popular">more →</S.MoreLink>
                 </S.ProductCatDiv>
                 <S.ProductGrid $isSearchResults={false}>
                   {popularProducts.slice(0, 10).map(product => (

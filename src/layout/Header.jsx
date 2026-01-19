@@ -72,7 +72,6 @@ function Header({ categories }) {
             )}
           </S.PCCategoryWrapper>
           <S.NavLink href="https://specmaru.com/" target="_blank" rel="noopener noreferrer">스펙비교</S.NavLink>
-          <S.NavLink href="#">광고문의</S.NavLink>
         </S.PCNav>
 
         <S.HamburgerIcon onClick={toggleNav}>☰</S.HamburgerIcon>
@@ -99,7 +98,6 @@ function Header({ categories }) {
           </S.DropdownMenu>
         </S.MobileCategoryWrapper>
         <S.NavLink href="https://specmaru.com/" target="_blank" rel="noopener noreferrer">스펙비교</S.NavLink>
-        <S.NavLink href="#">광고문의</S.NavLink>
       </S.MobileExpandedNav>
     </S.HeaderContainer>
   );

@@ -1,11 +1,5 @@
 [
   {
-    "메모장":"id ~ 14"
-  },
-
-
-  
-  {
     "id": 103,
     "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/03/14/18/8/95c9d4c4-631f-4fb9-8bf7-adf406dcb964.jpg",
     "name": "샤오미 15 ULTRA RAM 16GB",
@@ -104,28 +98,17 @@
     "link": "https://link.coupang.com/a/dupQWr",
     "category": "여성패션"
   },
-
-
-
-
-  {
-    "id": 502,
-    "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/425516723223192-d6ffbcf1-0e1d-408e-8a07-1e5828ed7858.jpg",
-    "name": "탐사 클래식 물티슈 캡형, 100매, 10개",
-    "link": "https://link.coupang.com/a/duiwB8",
-    "category": "생활용품"
-  },
-  {
-    "id": 501,
-    "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/images/2018/12/12/17/3/c8879685-6126-4762-b114-11003463a5f6.jpg",
-    "name": "시원하고 따뜻한 실내용 털슬리퍼, 브라운",
-    "link": "https://link.coupang.com/a/duiwlF",
-    "category": "생활용품"
-  },
-
   
 
 
+
+  {
+    "id": 3,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/d620/50402a10fcc2285bc138baca9a218fb47633652a7016d02a9b46fe36fb63.jpg",
+    "name": "두바이 쫀득 쿠키 두쫀쿠 50g x 2ea, 1박스, 100g",
+    "link": "https://link.coupang.com/a/dvjc6b",
+    "category": "식품"
+  },
   {
     "id": 2,
     "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2884059707515245-448b5d2b-4a14-4e33-8a06-2286392f8a64.jpg",
