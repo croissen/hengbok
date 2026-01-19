@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './Home.styles';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
@@ -197,7 +198,7 @@ function Home() {
                 <React.Fragment key={category.name}>
                   <S.ProductCatDiv>
                     <S.ProductCat>{category.name}</S.ProductCat>
-                    <S.MoreLink href={category.href}>more →</S.MoreLink>
+                    <S.MoreLink as={Link} to={category.href}>more →</S.MoreLink>
                   </S.ProductCatDiv>
                   <S.ProductGrid $isSearchResults={false}>
                     {productsInMainCategory.slice(0, 10).map(product => (

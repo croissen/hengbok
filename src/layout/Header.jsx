@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './Header.styles';
 
 function Header({ categories }) {
@@ -45,7 +46,7 @@ function Header({ categories }) {
   return (
     <S.HeaderContainer $isNavOpen={isNavOpen} ref={headerRef}>
       <S.TopHeaderRow>
-        <S.Logo href="/">행복스토어</S.Logo>
+        <S.Logo as={Link} to="/">행복스토어</S.Logo>
 
         <S.PCNav>
           <S.PCCategoryWrapper ref={pcCategoryWrapperRef}>
@@ -62,7 +63,8 @@ function Header({ categories }) {
                 {categories.map((category) => (
                   <S.PCCategoryDropdownLink 
                     key={category.name} 
-                    href={category.href}
+                    as={Link}       
+                    to={category.href}  
                     onClick={() => setIsPCCategoryDropdownOpen(false)}
                   >
                     {category.name}
@@ -86,7 +88,8 @@ function Header({ categories }) {
             {categories.map((category) => (
               <S.DropdownLink 
                 key={category.name} 
-                href={category.href}
+                as={Link}        
+                to={category.href}  
                 onClick={() => {
                   setIsMobileCategoryDropdownOpen(false);
                   setIsNavOpen(false);
