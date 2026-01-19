@@ -5,11 +5,11 @@ export const Footer = styled.footer`
   color: white;
   text-align: center;
   padding: 25px 20px;
-  font-size: 15px;
+  font-size: 12px;
   margin-top: 100px;
 
   @media (max-width: 768px) {
     padding: 20px 15px;
-    font-size: 13px; 
+    font-size: 10px; 
   }
 `;

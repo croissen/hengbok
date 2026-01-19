@@ -93,6 +93,7 @@ function Header({ categories }) {
                 onClick={() => {
                   setIsMobileCategoryDropdownOpen(false);
                   setIsNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth'})
                 }}
               >
                 {category.name}

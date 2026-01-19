@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -47,18 +47,82 @@ export const ProductCatDiv = styled.div`
 export const BackTextButton = styled.button`
   background: none;
   border: none;
-  color: #555; 
-  font-size: 14px;
+  color: #333;
+  font-size: 16px;
   cursor: pointer;
-  text-decoration: none; 
+  text-decoration: none;
   padding: 0;
 
   &:hover {
-    color: #ff6f61; 
+    color: #000;
   }
 
   @media (max-width: 768px) {
     font-size: 14px;
+  }
+`;
+
+const slideContinuous = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
+
+export const CoupangDiv = styled.div`
+  text-align: center;
+  margin: 20px auto 40px;
+  max-width: 600px;
+  padding: 0 20px;
+
+  iframe {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    margin: 15px auto 30px;
+    padding: 0 15px;
+  }
+`;
+
+export const CoupangMarqueeWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 10px;
+    margin-top: 10px;
+    position: relative;
+    height: 1.4em;
+  }
+`;
+
+export const CoupangScrollingContainer = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    width: max-content;
+    animation: ${slideContinuous} 15s linear infinite;
+    animation-play-state: running;
+  }
+`;
+
+export const CoupangP = styled.p`
+  margin: 0;
+  padding: 0;
+  color: #555;
+  line-height: 1.4;
+
+  @media (min-width: 769px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 20px;
   }
 `;
 

@@ -15,7 +15,7 @@ export const Container = styled.div`
   min-height: 100vh;
   font-family: Arial, sans-serif;
   color: #333;
-  background-color: #f5f6f8;
+  background-color:rgb(255, 255, 255);
 `;
 
 export const MainContent = styled.main`

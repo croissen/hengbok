@@ -10,8 +10,10 @@ function Detail() {
   const navigate = useNavigate();
   const [categoryProducts, setCategoryProducts] = useState([]);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const decodedCategoryName = categoryName ? decodeURIComponent(categoryName) : '';
+  const marqueeText = "페이지 내 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다. ";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +24,17 @@ function Detail() {
       }
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -65,6 +74,30 @@ function Detail() {
           <S.ProductCat>{decodedCategoryName}</S.ProductCat>
           <S.BackTextButton onClick={handleBackButtonClick}>← back</S.BackTextButton>
         </S.ProductCatDiv>
+
+        <S.CoupangDiv>
+            <iframe
+              src="https://coupa.ng/clmnT2"
+              width="100%"
+              height="36"
+              frameBorder="0"
+              scrolling="no"
+              referrerPolicy="unsafe-url"
+              title="쿠팡 관련 상품 광고"
+              browsingtopics
+            ></iframe>
+            {isMobile ? (
+              <S.CoupangMarqueeWrapper>
+                <S.CoupangScrollingContainer>
+                  <S.CoupangP>{marqueeText}</S.CoupangP>
+                  <S.CoupangP>{marqueeText}</S.CoupangP>
+                </S.CoupangScrollingContainer>
+              </S.CoupangMarqueeWrapper>
+            ) : (
+              <S.CoupangP style={{textAlign: 'center'}}>{marqueeText}</S.CoupangP>
+            )}
+        </S.CoupangDiv>
+
 
         {categoryProducts.length > 0 ? (
           <S.ProductGrid>

@@ -198,7 +198,7 @@ function Home() {
                 <React.Fragment key={category.name}>
                   <S.ProductCatDiv>
                     <S.ProductCat>{category.name}</S.ProductCat>
-                    <S.MoreLink as={Link} to={category.href}>more →</S.MoreLink>
+                    <S.MoreLink as={Link} to={category.href} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>more →</S.MoreLink>
                   </S.ProductCatDiv>
                   <S.ProductGrid $isSearchResults={false}>
                     {productsInMainCategory.slice(0, 10).map(product => (
