@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './Home.styles';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import productsData from '../assets/data/products.json';
+import bannersData from '../assets/data/banners.json';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +12,10 @@ function Home() {
   const [isSearching, setIsSearching] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const videoRef = useRef(null);
+  const [videoOpacity, setVideoOpacity] = useState(1);
+  const [textOpacity, setTextOpacity] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +40,33 @@ function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const bannerInterval = setInterval(() => {
+      setVideoOpacity(0);
+      setTextOpacity(0);
+      setTimeout(() => {
+        setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % bannersData.length);
+      }, 500);
+    }, 5000);
+
+    return () => clearInterval(bannerInterval);
+  }, []);
+
+  useEffect(() => {
+    setVideoOpacity(1);
+    setTextOpacity(1);
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(error => {
+        if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+          console.warn("비디오 자동 재생 실패 또는 중단됨:", error.name);
+        } else {
+          console.error("비디오 재생 오류:", error);
+        }
+      });
+    }
+  }, [currentBannerIndex]);
+
   const sortAndPrioritizeResults = (results, query) => {
     const idToPrioritize = parseInt(query, 10);
     const hasOriginalParenthesis = (product) => (product && product.name && product.name.includes(')'));
@@ -54,12 +86,8 @@ function Home() {
       const aHasParen = hasOriginalParenthesis(a);
       const bHasParen = hasOriginalParenthesis(b);
 
-      if (aHasParen && !bHasParen) {
-        return -1;
-      }
-      if (!aHasParen && bHasParen) {
-        return 1;
-      }
+      if (aHasParen && !bHasParen) return -1;
+      if (!aHasParen && bHasParen) return 1;
       return 0;
     });
 
@@ -97,10 +125,7 @@ function Home() {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const popularProductIds = [1, 2, 3, 302, 301, 103, 102, 201, 202, 203];
@@ -113,7 +138,8 @@ function Home() {
     { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
   ];
 
-  const disclaimerMessage = "하단 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.";
+  const disclaimerMessage = "페이지 내 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.    ";
+  const currentBanner = bannersData[currentBannerIndex];
 
   return (
     <S.Container>
@@ -122,13 +148,13 @@ function Home() {
       <S.MainContent>
         {!isSearching && (
           <>
-            <S.HeroSection>
-              <S.BackgroundVideo autoPlay loop muted playsInline>
-                <source src="/images/배너용.mp4" type="video/mp4" />
+            <S.HeroSection as="a" href={currentBanner.link} target="_blank" rel="noopener noreferrer">
+              <S.BackgroundVideo ref={videoRef} autoPlay loop muted playsInline $opacity={videoOpacity}>
+                <source src={currentBanner.videoSrc} type="video/mp4" />
               </S.BackgroundVideo>
-              <S.HeroContent>
-                <h1>행복을 담아가세요!</h1>
-                <p>오늘의 특별한 할인 상품을 만나보세요.</p>
+              <S.HeroContent style={{ opacity: textOpacity, transition: 'opacity 0.5s ease-in-out' }}>
+                <h1>{currentBanner.title}</h1>
+                <p>{currentBanner.subTitle}</p>
               </S.HeroContent>
             </S.HeroSection>
 
@@ -189,10 +215,7 @@ function Home() {
 
             {mainCategories.map(category => {
               const productsInMainCategory = productsData.filter(product => product.category === category.name);
-
-              if (productsInMainCategory.length === 0) {
-                return null;
-              }
+              if (productsInMainCategory.length === 0) return null;
 
               return (
                 <React.Fragment key={category.name}>

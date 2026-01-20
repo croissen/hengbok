@@ -26,20 +26,24 @@ export const MainContent = styled.main`
 `;
 
 export const HeroSection = styled.section`
-  position: relative; 
+  position: relative;
   width: 100%;
-  height: 400px; 
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  overflow: hidden; 
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  background-color: black; 
 
   @media (max-width: 768px) {
-    height: 300px; 
+    height: 300px;
     margin-bottom: 30px;
   }
 `;
+
 export const BackgroundVideo = styled.video`
   position: absolute;
   top: 0;
@@ -48,6 +52,8 @@ export const BackgroundVideo = styled.video`
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+  opacity: ${(props) => props.$opacity};
 `;
 
 export const HeroContent = styled.div`
@@ -57,21 +63,25 @@ export const HeroContent = styled.div`
   color: white;
   padding: 20px;
   border-radius: 8px;
+  transition: opacity 0.5s ease-in-out;
 
   h1 {
     font-size: 48px;
     margin-bottom: 15px;
     text-shadow:
-      0 0 2px rgba(0, 0, 0, 0.8),
-      0 0 6px rgba(0, 0, 0, 0.6);
+      0 1px 2px rgba(0,0,0,0.9),
+      0 2px 4px rgba(0,0,0,0.8),
+      0 4px 8px rgba(0,0,0,0.6),
+      0 8px 16px rgba(0,0,0,0.4);
   }
 
   p {
     font-size: 20px;
     margin-bottom: 30px;
     text-shadow:
-      0 0 2px rgba(0, 0, 0, 0.8),
-      0 0 6px rgba(0, 0, 0, 0.6);
+      0 1px 2px rgba(0,0,0,0.9),
+      0 2px 4px rgba(0,0,0,0.8),
+      0 4px 8px rgba(0,0,0,0.6);
   }
 
   @media (max-width: 768px) {
@@ -85,6 +95,7 @@ export const HeroContent = styled.div`
     }
   }
 `;
+
 
 
 export const ProductCat = styled.h2`
