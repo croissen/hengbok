@@ -46,7 +46,12 @@ function Header({ categories }) {
   return (
     <S.HeaderContainer $isNavOpen={isNavOpen} ref={headerRef}>
       <S.TopHeaderRow>
-        <S.Logo as={Link} to="/">행복스토어</S.Logo>
+        <S.Logo 
+          as={Link} 
+          to="/" // 루트 URL로 이동
+        >
+          행복스토어
+        </S.Logo>
 
         <S.PCNav>
           <S.PCCategoryWrapper ref={pcCategoryWrapperRef}>
