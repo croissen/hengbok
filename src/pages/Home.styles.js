@@ -36,7 +36,7 @@ export const HeroSection = styled.section`
   overflow: hidden;
   text-decoration: none;
   color: white;
-  background-color: black; 
+  background-color: white; 
 
   @media (max-width: 768px) {
     height: 300px;
@@ -52,7 +52,7 @@ export const BackgroundVideo = styled.video`
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   opacity: ${(props) => props.$opacity};
 `;
 

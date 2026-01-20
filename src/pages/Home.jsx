@@ -14,8 +14,8 @@ function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const videoRef = useRef(null);
-  const [videoOpacity, setVideoOpacity] = useState(1);
-  const [textOpacity, setTextOpacity] = useState(1);
+  const [videoOpacity, setVideoOpacity] = useState(0);
+  const [textOpacity, setTextOpacity] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,15 +25,12 @@ function Home() {
         setShowScrollButton(false);
       }
     };
-
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
     handleResize();
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
@@ -46,34 +43,32 @@ function Home() {
       setTextOpacity(0);
       setTimeout(() => {
         setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % bannersData.length);
-      }, 500);
-    }, 5000);
-
+      }, 300);
+    }, 6000);
     return () => clearInterval(bannerInterval);
   }, []);
 
   useEffect(() => {
-    setVideoOpacity(1);
-    setTextOpacity(1);
     if (videoRef.current) {
       videoRef.current.load();
       videoRef.current.play().catch(error => {
-        if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
-          console.warn("비디오 자동 재생 실패 또는 중단됨:", error.name);
-        } else {
+        if (error.name !== 'NotAllowedError' && error.name !== 'AbortError') {
           console.error("비디오 재생 오류:", error);
         }
       });
     }
   }, [currentBannerIndex]);
 
+  const handleVideoLoaded = () => {
+    setVideoOpacity(1);
+    setTextOpacity(1);
+  };
+
   const sortAndPrioritizeResults = (results, query) => {
     const idToPrioritize = parseInt(query, 10);
     const hasOriginalParenthesis = (product) => (product && product.name && product.name.includes(')'));
-
     let prioritizedById = null;
     const filteredResults = [];
-
     for (const product of results) {
       if (product && !isNaN(idToPrioritize) && product.id === idToPrioritize) {
         prioritizedById = product;
@@ -81,16 +76,13 @@ function Home() {
         filteredResults.push(product);
       }
     }
-
     filteredResults.sort((a, b) => {
       const aHasParen = hasOriginalParenthesis(a);
       const bHasParen = hasOriginalParenthesis(b);
-
       if (aHasParen && !bHasParen) return -1;
       if (!aHasParen && bHasParen) return 1;
       return 0;
     });
-
     if (prioritizedById) {
       return [prioritizedById, ...filteredResults];
     }
@@ -149,7 +141,15 @@ function Home() {
         {!isSearching && (
           <>
             <S.HeroSection as="a" href={currentBanner.link} target="_blank" rel="noopener noreferrer">
-              <S.BackgroundVideo ref={videoRef} autoPlay loop muted playsInline $opacity={videoOpacity}>
+              <S.BackgroundVideo
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                $opacity={videoOpacity}
+                onLoadedData={handleVideoLoaded}
+              >
                 <source src={currentBanner.videoSrc} type="video/mp4" />
               </S.BackgroundVideo>
               <S.HeroContent style={{ opacity: textOpacity, transition: 'opacity 0.5s ease-in-out' }}>
