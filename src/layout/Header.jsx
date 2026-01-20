@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import * as S from './Header.styles';
 
 function Header({ categories }) {
@@ -8,7 +8,8 @@ function Header({ categories }) {
   const [isMobileCategoryDropdownOpen, setIsMobileCategoryDropdownOpen] = useState(false);
   const headerRef = useRef(null);
   const pcCategoryWrapperRef = useRef(null);
-  
+  const navigate = useNavigate(); // navigate 훅 사용
+
   const toggleNav = () => {
     setIsNavOpen(prev => !prev);
     setIsMobileCategoryDropdownOpen(false);
@@ -43,12 +44,18 @@ function Header({ categories }) {
     };
   }, [handleClickOutside]);
 
+  // 로고 클릭 시 루트 URL로 명확하게 이동하는 함수
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <S.HeaderContainer $isNavOpen={isNavOpen} ref={headerRef}>
       <S.TopHeaderRow>
-        <S.Logo 
-          as={Link} 
-          to="/" // 루트 URL로 이동
+        <S.Logo
+          as={Link}
+          to="/" // Link 자체는 '/'로 설정하되,
+          onClick={handleLogoClick} // onClick으로 명시적 이동 함수 호출
         >
           행복스토어
         </S.Logo>
@@ -66,10 +73,10 @@ function Header({ categories }) {
             {isPCCategoryDropdownOpen && (
               <S.PCategoryDropdownMenu>
                 {categories.map((category) => (
-                  <S.PCCategoryDropdownLink 
-                    key={category.name} 
-                    as={Link}       
-                    to={category.href}  
+                  <S.PCCategoryDropdownLink
+                    key={category.name}
+                    as={Link}
+                    to={category.href}
                     onClick={() => setIsPCCategoryDropdownOpen(false)}
                   >
                     {category.name}
@@ -91,10 +98,10 @@ function Header({ categories }) {
           </S.NavLink>
           <S.DropdownMenu $isOpen={isMobileCategoryDropdownOpen}>
             {categories.map((category) => (
-              <S.DropdownLink 
-                key={category.name} 
-                as={Link}        
-                to={category.href}  
+              <S.DropdownLink
+                key={category.name}
+                as={Link}
+                to={category.href}
                 onClick={() => {
                   setIsMobileCategoryDropdownOpen(false);
                   setIsNavOpen(false);
