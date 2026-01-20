@@ -5,20 +5,23 @@ import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import productsData from '../assets/data/products.json';
 
+const heroVideos = [
+  '/images/배너용.mp4',
+  '/images/영상.mp4'
+];
+
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isBlackFade, setIsBlackFade] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setShowScrollButton(true);
-      } else {
-        setShowScrollButton(false);
-      }
+      setShowScrollButton(window.scrollY > 200);
     };
 
     const handleResize = () => {
@@ -35,56 +38,68 @@ function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (heroVideos.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setIsBlackFade(true);
+
+      setTimeout(() => {
+        setCurrentVideoIndex(prev => (prev + 1) % heroVideos.length);
+      }, 600);
+
+      setTimeout(() => {
+        setIsBlackFade(false);
+      }, 1200);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const sortAndPrioritizeResults = (results, query) => {
     const idToPrioritize = parseInt(query, 10);
-    const hasOriginalParenthesis = (product) => (product && product.name && product.name.includes(')'));
+    const hasParen = product => product?.name?.includes(')');
 
-    let prioritizedById = null;
-    const filteredResults = [];
+    let prioritized = null;
+    const rest = [];
 
     for (const product of results) {
-      if (product && !isNaN(idToPrioritize) && product.id === idToPrioritize) {
-        prioritizedById = product;
-      } else if (product) {
-        filteredResults.push(product);
+      if (!isNaN(idToPrioritize) && product.id === idToPrioritize) {
+        prioritized = product;
+      } else {
+        rest.push(product);
       }
     }
 
-    filteredResults.sort((a, b) => {
-      const aHasParen = hasOriginalParenthesis(a);
-      const bHasParen = hasOriginalParenthesis(b);
-
-      if (aHasParen && !bHasParen) {
-        return -1;
-      }
-      if (!aHasParen && bHasParen) {
-        return 1;
-      }
+    rest.sort((a, b) => {
+      if (hasParen(a) && !hasParen(b)) return -1;
+      if (!hasParen(a) && hasParen(b)) return 1;
       return 0;
     });
 
-    if (prioritizedById) {
-      return [prioritizedById, ...filteredResults];
-    }
-    return filteredResults;
+    return prioritized ? [prioritized, ...rest] : rest;
   };
 
-  const performSearch = (query) => {
-    if (query.trim() !== '') {
-      const filtered = productsData.filter(product => {
-        const productName = product.name ? product.name.toLowerCase() : '';
-        const lowerCaseQuery = query.toLowerCase();
-        return productName.includes(lowerCaseQuery) || (product.id && product.id.toString() === query.trim());
-      });
-      setSearchResults(sortAndPrioritizeResults(filtered, query));
-      setIsSearching(true);
-    } else {
+  const performSearch = query => {
+    if (!query.trim()) {
       setIsSearching(false);
       setSearchResults([]);
+      return;
     }
+
+    const filtered = productsData.filter(product => {
+      const name = product.name?.toLowerCase() || '';
+      return (
+        name.includes(query.toLowerCase()) ||
+        product.id?.toString() === query.trim()
+      );
+    });
+
+    setSearchResults(sortAndPrioritizeResults(filtered, query));
+    setIsSearching(true);
   };
 
-  const handleSearchInputChange = (e) => {
+  const handleSearchInputChange = e => {
     const value = e.target.value;
     setSearchTerm(value);
     performSearch(value);
@@ -97,23 +112,23 @@ function Home() {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const popularProductIds = [1, 2, 3, 302, 301, 103, 102, 201, 202, 203];
-  const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
+  const popularProducts = popularProductIds
+    .map(id => productsData.find(p => p.id === id))
+    .filter(Boolean);
 
   const mainCategories = [
-    { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
-    { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
-    { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
-    { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
+    { name: '여성패션', href: `/category/${encodeURIComponent('여성패션')}` },
+    { name: '뷰티', href: `/category/${encodeURIComponent('뷰티')}` },
+    { name: '가전/디지털', href: `/category/${encodeURIComponent('가전/디지털')}` },
+    { name: '식품', href: `/category/${encodeURIComponent('식품')}` },
   ];
 
-  const disclaimerMessage = "하단 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.";
+  const disclaimerMessage =
+    '하단 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.';
 
   return (
     <S.Container>
@@ -123,9 +138,19 @@ function Home() {
         {!isSearching && (
           <>
             <S.HeroSection>
-              <S.BackgroundVideo autoPlay loop muted playsInline>
-                <source src="/images/영상.mp4" type="video/mp4" />
-              </S.BackgroundVideo>
+              <S.VideoWrapper>
+                <S.BackgroundVideo
+                  key={currentVideoIndex}
+                  autoPlay
+                  muted
+                  playsInline
+                  loop={heroVideos.length === 1}
+                >
+                  <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
+                </S.BackgroundVideo>
+                <S.BlackOverlay $active={isBlackFade} />
+              </S.VideoWrapper>
+
               <S.HeroContent>
                 <h1>행복을 담아가세요!</h1>
                 <p>오늘의 특별한 할인 상품을 만나보세요.</p>
@@ -134,7 +159,9 @@ function Home() {
 
             <S.DisclaimerText>
               <span>
-                {isMobile ? `${disclaimerMessage} ${disclaimerMessage}` : disclaimerMessage}
+                {isMobile
+                  ? `${disclaimerMessage} ${disclaimerMessage}`
+                  : disclaimerMessage}
               </span>
             </S.DisclaimerText>
           </>
@@ -146,9 +173,11 @@ function Home() {
             placeholder="번호 및 상품명을 입력하세요"
             value={searchTerm}
             onChange={handleSearchInputChange}
-            onKeyPress={(e) => { if (e.key === 'Enter') performSearch(searchTerm); }}
+            onKeyDown={e => e.key === 'Enter' && performSearch(searchTerm)}
           />
-          <S.SearchButton onClick={handleResetSearch}>초기화</S.SearchButton>
+          <S.SearchButton onClick={handleResetSearch}>
+            초기화
+          </S.SearchButton>
         </S.SearchSection>
 
         {isSearching ? (
@@ -156,55 +185,89 @@ function Home() {
             <S.ProductCatDiv>
               <S.ProductCat>"{searchTerm}" 검색 결과</S.ProductCat>
             </S.ProductCatDiv>
+
             {searchResults.length > 0 ? (
-              <S.ProductGrid $isSearchResults={true}>
+              <S.ProductGrid $isSearchResults>
                 {searchResults.map(product => (
-                  <S.ProductCard key={product.id} href={product.link} target="_blank" rel="noopener noreferrer" $isSearchResults={true}>
+                  <S.ProductCard
+                    key={product.id}
+                    href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    $isSearchResults
+                  >
                     <S.ProductImage src={product.image} alt={product.name} />
-                    <S.ProductName>{product.id}. {product.name}</S.ProductName>
+                    <S.ProductName>
+                      {product.id}. {product.name}
+                    </S.ProductName>
                   </S.ProductCard>
                 ))}
               </S.ProductGrid>
             ) : (
-              <S.NoResultsMessage>"{searchTerm}"에 대한 검색 결과가 없습니다.</S.NoResultsMessage>
+              <S.NoResultsMessage>
+                "{searchTerm}"에 대한 검색 결과가 없습니다.
+              </S.NoResultsMessage>
             )}
           </>
         ) : (
           <>
             {popularProducts.length > 0 && (
-              <React.Fragment>
+              <>
                 <S.ProductCatDiv>
                   <S.ProductCat>인기상품</S.ProductCat>
                 </S.ProductCatDiv>
-                <S.ProductGrid $isSearchResults={false}>
-                  {popularProducts.slice(0, 10).map(product => (
-                    <S.ProductCard key={product.id} href={product.link} target="_blank" rel="noopener noreferrer" $isSearchResults={false}>
+                <S.ProductGrid>
+                  {popularProducts.map(product => (
+                    <S.ProductCard
+                      key={product.id}
+                      href={product.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <S.ProductImage src={product.image} alt={product.name} />
-                      <S.ProductName>{product.id}. {product.name}</S.ProductName>
+                      <S.ProductName>
+                        {product.id}. {product.name}
+                      </S.ProductName>
                     </S.ProductCard>
                   ))}
                 </S.ProductGrid>
-              </React.Fragment>
+              </>
             )}
 
             {mainCategories.map(category => {
-              const productsInMainCategory = productsData.filter(product => product.category === category.name);
+              const items = productsData.filter(
+                p => p.category === category.name
+              );
 
-              if (productsInMainCategory.length === 0) {
-                return null;
-              }
+              if (!items.length) return null;
 
               return (
                 <React.Fragment key={category.name}>
                   <S.ProductCatDiv>
                     <S.ProductCat>{category.name}</S.ProductCat>
-                    <S.MoreLink as={Link} to={category.href} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>more →</S.MoreLink>
+                    <S.MoreLink
+                      as={Link}
+                      to={category.href}
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }
+                    >
+                      more →
+                    </S.MoreLink>
                   </S.ProductCatDiv>
-                  <S.ProductGrid $isSearchResults={false}>
-                    {productsInMainCategory.slice(0, 10).map(product => (
-                      <S.ProductCard key={product.id} href={product.link} target="_blank" rel="noopener noreferrer" $isSearchResults={false}>
+
+                  <S.ProductGrid>
+                    {items.slice(0, 10).map(product => (
+                      <S.ProductCard
+                        key={product.id}
+                        href={product.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <S.ProductImage src={product.image} alt={product.name} />
-                        <S.ProductName>{product.id}. {product.name}</S.ProductName>
+                        <S.ProductName>
+                          {product.id}. {product.name}
+                        </S.ProductName>
                       </S.ProductCard>
                     ))}
                   </S.ProductGrid>
@@ -214,19 +277,28 @@ function Home() {
           </>
         )}
       </S.MainContent>
+
       {!isSearching && (
         <S.CoupangDiv>
           <S.CoupangP>
             여기까지 오셨는데도 마음에 드는 상품을 찾지 못하셨나요??
           </S.CoupangP>
-          <iframe src="https://coupa.ng/cllzae" width="100%" height="44" frameBorder="0" scrolling="no" referrerPolicy="unsafe-url" title="추천 상품 더 보기"></iframe>
+          <iframe
+            src="https://coupa.ng/cllzae"
+            width="100%"
+            height="44"
+            frameBorder="0"
+            scrolling="no"
+            referrerPolicy="unsafe-url"
+            title="추천 상품 더 보기"
+          />
         </S.CoupangDiv>
       )}
 
       <Footer />
 
       {showScrollButton && (
-        <S.ScrollToTopButton onClick={scrollToTop} $isVisible={showScrollButton}>
+        <S.ScrollToTopButton onClick={scrollToTop} $isVisible>
           ↑
         </S.ScrollToTopButton>
       )}

@@ -40,14 +40,27 @@ export const HeroSection = styled.section`
     margin-bottom: 30px;
   }
 `;
-export const BackgroundVideo = styled.video`
+export const VideoWrapper = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+export const BackgroundVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+`;
+
+export const BlackOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: black;
+  opacity: ${({ $active }) => ($active ? 1 : 0)};
+  transition: opacity 0.6s ease-in-out;
+  pointer-events: none;
+  z-index: 2;
 `;
 
 export const HeroContent = styled.div`
@@ -61,11 +74,17 @@ export const HeroContent = styled.div`
   h1 {
     font-size: 48px;
     margin-bottom: 15px;
+    text-shadow:
+      0 0 2px rgba(0, 0, 0, 0.8),
+      0 0 6px rgba(0, 0, 0, 0.6);
   }
 
   p {
     font-size: 20px;
     margin-bottom: 30px;
+    text-shadow:
+      0 0 2px rgba(0, 0, 0, 0.8),
+      0 0 6px rgba(0, 0, 0, 0.6);
   }
 
   @media (max-width: 768px) {
@@ -79,6 +98,7 @@ export const HeroContent = styled.div`
     }
   }
 `;
+
 
 export const ProductCat = styled.h2`
   font-size: 32px;
