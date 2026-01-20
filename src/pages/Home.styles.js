@@ -73,6 +73,9 @@ export const HeroContent = styled.div`
       0 2px 4px rgba(0,0,0,0.8),
       0 4px 8px rgba(0,0,0,0.6),
       0 8px 16px rgba(0,0,0,0.4);
+      @media (max-width: 768px) {
+        font-size: 32px;
+      }
   }
 
   p {
@@ -82,6 +85,9 @@ export const HeroContent = styled.div`
       0 1px 2px rgba(0,0,0,0.9),
       0 2px 4px rgba(0,0,0,0.8),
       0 4px 8px rgba(0,0,0,0.6);
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
   }
 
   @media (max-width: 768px) {
@@ -302,7 +308,7 @@ export const SearchButton = styled.button`
 
   @media (max-width: 768px) {
     width: 20%;
-    font-size: 14px;
+    font-size: 12px;
     padding: 10px 12px;
   }
 `;
