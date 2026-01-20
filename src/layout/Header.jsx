@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { Link } from 'react-router-dom';
 import * as S from './Header.styles';
 
 function Header({ categories }) {
@@ -8,8 +8,7 @@ function Header({ categories }) {
   const [isMobileCategoryDropdownOpen, setIsMobileCategoryDropdownOpen] = useState(false);
   const headerRef = useRef(null);
   const pcCategoryWrapperRef = useRef(null);
-  const navigate = useNavigate(); // navigate 훅 사용
-
+  
   const toggleNav = () => {
     setIsNavOpen(prev => !prev);
     setIsMobileCategoryDropdownOpen(false);
@@ -44,9 +43,9 @@ function Header({ categories }) {
     };
   }, [handleClickOutside]);
 
-  // 로고 클릭 시 루트 URL로 명확하게 이동하는 함수
-  const handleLogoClick = () => {
-    navigate('/');
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    window.location.replace(window.location.origin);
   };
 
   return (
@@ -54,8 +53,8 @@ function Header({ categories }) {
       <S.TopHeaderRow>
         <S.Logo
           as={Link}
-          to="/" // Link 자체는 '/'로 설정하되,
-          onClick={handleLogoClick} // onClick으로 명시적 이동 함수 호출
+          to="/"
+          onClick={handleLogoClick}
         >
           행복스토어
         </S.Logo>
