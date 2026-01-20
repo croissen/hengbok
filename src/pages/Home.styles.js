@@ -381,11 +381,12 @@ export const ScrollToTopButton = styled.button`
 `;
 export const CoupangDiv = styled.div`
   text-align: center;
-  margin: 100px 0 400px 0;
+  margin: 100px 0 20% 0;
   padding: 0 20%;
 
   @media (max-width: 768px) {
     padding: 0 20px;
+    margin: 100px 0 80% 0;
   }
 `;
 export const CoupangP = styled.p`
