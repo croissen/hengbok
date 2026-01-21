@@ -63,6 +63,7 @@ function Detail() {
     { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
     { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
     { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
+    { name: "건강식품", href: `/category/${encodeURIComponent("건강식품")}` },
   ];
 
   return (
