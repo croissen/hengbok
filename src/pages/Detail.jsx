@@ -59,6 +59,7 @@ function Detail() {
   };
 
   const mainCategories = [
+    { name: "설날선물", href: `/category/${encodeURIComponent("설날선물")}` },
     { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
     { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
     { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
