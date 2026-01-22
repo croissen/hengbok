@@ -83,9 +83,37 @@
     "category": ""
   },
   {
-    "id": "106",
+    "id": 110,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/1765796859280524-62e3c768-4e7f-43ff-bd56-e30389cfe848.png",
+    "name": "블라우풍트 대용량 저소음 초음파 가습기 5L",
+    "link": "https://link.coupang.com/a/dxwcAR",
+    "category": "가전/디지털"
+  },
+  {
+    "id": 109,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/262534614739519-c0900620-4152-4c75-b59d-921bd157c224.jpg",
+    "name": "홈플래닛 베이직 대용량 초음파 가습기 5L",
+    "link": "https://link.coupang.com/a/dxwanY",
+    "category": "가전/디지털"
+  },
+  {
+    "id": 108,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e0bd/7bfbd3fd399db0fb8d5305d12f11ebfdfe7a613f311d799d8481373a8122.png",
+    "name": "이오웰 대용량 통세척 무소음 초음파 가습기 5L",
+    "link": "https://link.coupang.com/a/dxv84k",
+    "category": "가전/디지털"
+  },
+  {
+    "id": 107,
+    "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/image_audit/stage/manual/467ed3c825348138970bd61ab7e0ea83ece3a9289d528cddc6f9982ae8cc_1768290722005.jpg",
+    "name": "아이닉 UV살균 자동 습도조절 퓨어 올 케어 복합식 가습기 5L",
+    "link": "https://link.coupang.com/a/dxv4yo",
+    "category": "가전/디지털"
+  },
+  {
+    "id": 106,
     "image": "//thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/9a56/d9e947b7050cae9b74a5e9033ea70e493f87c2dc5946766ffcf17a1bcc1f.png",
-    "name": "AOSS 대용량 5L 무소음 초음파 가습기",
+    "name": "AOSS 대용량 5L 무소음 초음파 가습기 5L",
     "link": "https://link.coupang.com/a/dxvWIE",
     "category": "가전/디지털"
   },
