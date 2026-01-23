@@ -120,7 +120,7 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const popularProductIds = [1, 2, 3, 10, 8, 310, 309, 308, 307, 306];
+  const popularProductIds = [910, 909, 908, 907, 906, 2, 3, 308, 307, 306];
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
@@ -130,6 +130,7 @@ function Home() {
     { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
     { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
     { name: "건강식품", href: `/category/${encodeURIComponent("건강식품")}` },
+    { name: "명품", href: `/category/${encodeURIComponent("명품")}` },
   ];
 
   const disclaimerMessage = "페이지 내 링크로 구매하면 쿠팡으로부터 일정액의 수수료를 제공 받아 채널 운영에 도움이 됩니다.    ";
