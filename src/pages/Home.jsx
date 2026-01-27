@@ -120,15 +120,16 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const popularProductIds = [910, 909, 908, 907, 906, 2, 3, 308, 307, 306];
+  const popularProductIds = [1, 918, 919, 917, 916, 913, 912, 10, 307, 306];
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
     { name: "설날선물", href: `/category/${encodeURIComponent("설날선물")}` },
-    { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
-    { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
-    { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
     { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
+    { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
+    { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
+    { name: "남성패션", href: `/category/${encodeURIComponent("남성패션")}` },
+    { name: "가전/디지털", href: `/category/${encodeURIComponent("가전/디지털")}` },
     { name: "건강식품", href: `/category/${encodeURIComponent("건강식품")}` },
     { name: "명품", href: `/category/${encodeURIComponent("명품")}` },
   ];
