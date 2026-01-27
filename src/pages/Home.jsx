@@ -120,7 +120,7 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const popularProductIds = [1, 918, 919, 917, 916, 913, 912, 10, 307, 306];
+  const popularProductIds = [1, 17, 16, 519, 520, 918, 912, 909, 307, 306];
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
