@@ -124,7 +124,7 @@ function Home() {
   const popularProducts = popularProductIds.map(id => productsData.find(product => product.id === id)).filter(Boolean);
 
   const mainCategories = [
-    { name: "설날선물", href: `/category/${encodeURIComponent("설날선물")}` },
+    // { name: "설날선물", href: `/category/${encodeURIComponent("설날선물")}` },
     { name: "식품", href: `/category/${encodeURIComponent("식품")}` },
     { name: "뷰티", href: `/category/${encodeURIComponent("뷰티")}` },
     { name: "여성패션", href: `/category/${encodeURIComponent("여성패션")}` },
